@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Site Spider{% endblock %}
+
+{% block content %}
+  <div class="header">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-1">
+        </div>
+        <div class="col">
+          <h3 class="product_name">Site Spider</h1>
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-primary add_site_button" data-toggle="modal" data-target="#addToArchiveModal">Добавить сайт в архив</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-lg" id="addToArchiveModal" tabindex="-1" role="dialog" aria-labelledby="addToArchiveModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addToArchiveModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+          
+            <div class="form-group">
+              <label for="changes_description_area">Описание релиза</label>
+              <textarea class="form-control changes_description_text" id="changes-description-area" rows="3"></textarea>
+            </div>        
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <form>
+      <div class="row">
+      <div class="form-group col-md-10">
+        <label for="find_text">Введите текст для поиска</label>
+        <input type="text" class="form-control" id="find_text" placeholder="Введите текст">
+      </div>
+      <div class="form-group col-md-2">
+        <button type="button" class="btn btn-primary find_button">Найти</button>
+      </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="site">Сайт</label>
+          <select class="form-control" id="site">
+            <option value="ispringsolutions">ispringsolutions.com</option>
+            <option value="ispring">ispring.ru</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="begin_date">Начальная дата</label>
+          <input type="date" class="form-control" id="begin_date" name="date" placeholder="Дата" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="end_date">Конечная дата</label>
+          <input type="date" class="form-control" id="end_date" name="date" placeholder="Дата" required>
+        </div>
+      </div>
+    
+    </form>
+      
+        
+  </div>
+                          
+<div class="container">
+  <table>
+  <div id="books">
+      {% for book in books %}
+      <tr>
+        <td> {{book.date}} </td>  
+        <td> {{book.title}} </td>
+        <td><a class="edit_icon" href="{{book.url}}"></a></td>
+        <td><a class="view_icon" href="{{book.url}}"></a></td>
+      </tr>
+      {% endfor %}
+  </div>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Site Spider{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                <div class="large-offset-1 large-9">
+                    <h3 class="product_name">Site Spider</h1>
+                </div>
+                <div class="large-2">
+                    <button type="button" class="button add_site_button">Добавить сайт в архив</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=""></div>
+
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="large-10 large-offset-1 cell find_block">
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-9 cell">
+                        <label>Введите текст для поиска
+                            <input type="text" placeholder="введите текст">
+                        </label>
+                    </div>
+                    <div class="medium-3 cell">
+                        <button type="button" class="button expanded find_button">Поиск</button>
+                    </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-4 cell">
+                        <label>Select Menu
+                            <select>
+                                <option value="ispringsolutions">ispringsolutions.com</option>
+                                <option value="ispring">ispring.ru</option>
+                            </select>
+                        </label>
+                    </div>
+                   <div class="medium-4 cell">
+                        <label>Период
+                            <span>с </span>
+                            <input type="date" placeholder=".medium-6.cell">    
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>
+                            <span>по </span>
+                            <input type="date" placeholder=".medium-6.cell">    
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                          
+
+<div id="books">
+    {% for book in books %}
+    <div class="book">
+    	<strong>{{book.number}}</strong>. "<em>{{book.title}}"</em> - {{book.date}}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
