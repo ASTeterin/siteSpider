@@ -1,25 +1,61 @@
 window.onload = function() {
-    showFilmBlock();
-    showPopupWindow();
+  //setDates();
+  //showPopupWindow();
+  startCheckDate();
 }
 
-function showFilmBlock() {
-    var filmButton = document.getElementById('all_films_button');
+function setDates() { 
+  var endDate = document.getElementById('end_date');
+  var beginDate = document.getElementById('begin_date');
+  var currentDate = moment();
 
-    function displayFilmBlock(event) {
-        event.preventDefault();
-        var advancedFilm = document.getElementById('hidden_block');
-        filmButton.style.display = 'none';
-        advancedFilm.classList.add('visible_advanced_film');
+  var getNormalDate = function(date){ 
+    var day = date.get('date');
+    var month = date.get('month');
+    var year = date.get('year');
+    month++;
+    if (day<10) 
+      day='0'+day; 
+    if (month<10) 
+      month='0'+month; 
+    return year + '-' + month + '-' + day; 
+  };
+  
+  //alert(beginDate.value + "ddd");
+  
+  if (beginDate.value == '')
+  {
+    endDate.value = getNormalDate(currentDate);
+    beginDate.value = getNormalDate(currentDate.subtract(1, 'months'));
+  }
+}
+
+function checkDates() {
+  var endDateField = document.getElementById('end_date');
+  var beginDateField = document.getElementById('begin_date');
+  var endDate = endDateField.value;
+  var beginDate = beginDateField.value;
+  if (moment(endDate).isAfter(moment(beginDate)))
+    return true;
+  else
+    {
+      alert('Начальная дата больше конечной');
+      return false;
     }
-    
-    filmButton.addEventListener('click', displayFilmBlock);
+}
+
+function startCheckDate() {
+  var startButton = document.getElementById('find_button');
+  var allCopiesTable = document.getElementById('all_copies_table');
+  startButton.addEventListener('click', checkDates);
+  allCopiesTable.classList.remove('all_copies');
+  
 }
 
 function showPopupWindow() {
-    var popupWindow = document.getElementById('popup');
+    var popupWindow = document.getElementById('popup'); 
     var background = document.getElementById('background');
-    var requiredFields = document.getElementsByClassName('required_field');
+    var editIcons = document.getElementsByClassName('edit_icon');
     var tagBody = document.getElementsByTagName('body')[0];
     var tagHtml = document.getElementsByTagName('html')[0];
     
@@ -40,9 +76,6 @@ function showPopupWindow() {
         tagHtml.classList.remove('remove_overflow');
     }
     
-    function removeBorder() {
-        this.classList.remove('error');
-    }
 
     document.getElementById('writeme').addEventListener('click', displayWindow);
     document.getElementById('close_window').addEventListener('click', closeWindow);

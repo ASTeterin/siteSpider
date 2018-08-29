@@ -44,31 +44,31 @@
   </div>
 
   <div class="container">
-    <form>
+    <form action="../search.php" method="POST">
       <div class="row">
       <div class="form-group col-md-10">
         <label for="find_text">Введите текст для поиска</label>
-        <input type="text" class="form-control" id="find_text" placeholder="Введите текст">
+        <input type="text" name="find_text" class="form-control" id="find_text" placeholder="Введите текст">
       </div>
       <div class="form-group col-md-2">
-        <button type="button" class="btn btn-primary find_button">Найти</button>
+        <button type="submit" id="find_button" class="btn btn-primary find_button">Найти</button>
       </div>
       </div>
       <div class="row">
         <div class="form-group col-md-4">
           <label for="site">Сайт</label>
-          <select class="form-control" id="site">
+          <select class="form-control" id="site" name="site">
             <option value="ispringsolutions">ispringsolutions.com</option>
             <option value="ispring">ispring.ru</option>
           </select>
         </div>
         <div class="form-group col-md-4">
           <label for="begin_date">Начальная дата</label>
-          <input type="date" class="form-control" id="begin_date" name="date" placeholder="Дата" required>
+          <input type="date" class="form-control" id="begin_date" name="begin_date" value={{beginDate}} required>
         </div>
         <div class="form-group col-md-4">
           <label for="end_date">Конечная дата</label>
-          <input type="date" class="form-control" id="end_date" name="date" placeholder="Дата" required>
+          <input type="date" class="form-control" id="end_date" name="end_date" value={{endDate}} required>
         </div>
       </div>
     
@@ -77,15 +77,15 @@
         
   </div>
                           
-<div class="container">
+<div class="container all_copies" id="all_copies_table">
   <table>
-  <div id="books">
-      {% for book in books %}
+  <div id="site_copies_table">
+      {% for site_copy in siteCopies %}
       <tr>
-        <td> {{book.date}} </td>  
-        <td> {{book.title}} </td>
-        <td><a class="edit_icon" href="{{book.url}}"></a></td>
-        <td><a class="view_icon" href="{{book.url}}"></a></td>
+        <td> {{site_copy.date}} </td>  
+        <td> {{site_copy.title}} </td>
+        <td><a class="edit_icon" href="{{site_copy.url}}"></a></td>
+        <td><a class="view_icon" href="{{site_copy.url}}"></a></td>
       </tr>
       {% endfor %}
   </div>

@@ -58,7 +58,10 @@ td
 }
 }
 
-
+.all_copies
+{
+  display: none;
+}
 
 .menu
 {
